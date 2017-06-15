@@ -17,39 +17,42 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/fab_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:visibility="visible"
-            app:rippleColor="@android:color/background_dark">
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/capture_webview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_label="顶部"
-                app:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/capture_all_webview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_label="底部"
-                app:fab_size="mini" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-
         <WebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </WebView>
+
+
+        <com.ddz.floatingactionbutton.FloatingActionMenu
+            android:id="@+id/fab_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:fab_labelStyle="@style/lable_style"
+            app:rippleColor="@android:color/background_dark">
+
+            <com.ddz.floatingactionbutton.FloatingActionButton
+                android:id="@+id/capture_webview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_size="mini"
+                app:fab_title="顶部" />
+
+            <com.ddz.floatingactionbutton.FloatingActionButton
+                android:id="@+id/capture_all_webview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_size="mini"
+                app:fab_title="底部" />
+
+        </com.ddz.floatingactionbutton.FloatingActionMenu>
+
 
     </android.support.design.widget.CoordinatorLayout>
 

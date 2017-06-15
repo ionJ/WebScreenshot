@@ -2,15 +2,21 @@ package com.mycompany.webscreenshot;
 
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import com.ddz.floatingactionbutton.FloatingActionButton;
+import com.ddz.floatingactionbutton.FloatingActionMenu;
 public class WebPage extends AppCompatActivity {
+
+    private FloatingActionMenu fab_menu;
+
+    private FloatingActionButton captureButton;
+
+    private FloatingActionButton captureAllButton;
+
 
     @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +30,10 @@ public class WebPage extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://" + data);
         webView.setDrawingCacheEnabled(true);
+
+        fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+        captureButton = (FloatingActionButton)findViewById(R.id.capture_webview);
+        captureAllButton = (FloatingActionButton)findViewById(R.id.capture_all_webview);
+        //fab_menu.getMenuButtonColorNormal();
     }
 }
