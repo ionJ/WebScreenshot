@@ -22,10 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </WebView>
 
 
@@ -42,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_size="mini"
-                app:fab_title="顶部" />
+                app:fab_title="屏幕截图" />
 
             <com.ddz.floatingactionbutton.FloatingActionButton
                 android:id="@+id/capture_all_webview"
