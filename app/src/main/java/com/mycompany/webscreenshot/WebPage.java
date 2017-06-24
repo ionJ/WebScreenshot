@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -49,6 +50,8 @@ public class WebPage extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://" + data);
         webView.setDrawingCacheEnabled(true);
+
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
 
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
         captureButton = (FloatingActionButton) findViewById(R.id.capture_webview);
