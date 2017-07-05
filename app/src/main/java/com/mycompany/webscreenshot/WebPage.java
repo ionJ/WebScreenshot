@@ -8,7 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -35,6 +36,8 @@ public class WebPage extends AppCompatActivity {
 
     private FloatingActionButton captureAllButton;
 
+    private DrawerLayout mDrawerLayout;
+
     private static final String TAG = "WebPage";
 
 
@@ -51,7 +54,13 @@ public class WebPage extends AppCompatActivity {
         webView.loadUrl("http://" + data);
         webView.setDrawingCacheEnabled(true);
 
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
 
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
         captureButton = (FloatingActionButton) findViewById(R.id.capture_webview);

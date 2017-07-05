@@ -29,4 +29,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.3.1'
     compile 'com.ddz.materialdesign:FloatingActionButton:1.0.4'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
