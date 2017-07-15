@@ -5,13 +5,17 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -51,7 +55,7 @@ public class WebPage extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         // 当网页跳转时，令目标网页仍然在当前 WebView 中显示
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("http://" + data);
+        webView.loadUrl("https://www.baidu.com/s?wd=" + data + "&ie=utf-8&src=eg_newtab");
         webView.setDrawingCacheEnabled(true);
 
 
@@ -72,13 +76,38 @@ public class WebPage extends AppCompatActivity {
                 Bitmap a = activityShot(WebPage.this);
                 String num = getRandomCode();
                 saveToSD(a, "/Screenimage" + num);
-                Toast.makeText(WebPage.this, "OK", Toast.LENGTH_SHORT).show();
-                Toast.makeText(WebPage.this, "is" + num, Toast.LENGTH_SHORT).show();
+                Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"/Android/data/WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        captureAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    WebView.enableSlowWholeDocumentDraw();
+                }
+                Bitmap b = webshot(webView);
+                String num = getRandomCode();
+                saveToSD(b, "/AllScreenimage" + num);
+                Toast.makeText(WebPage.this, Environment.getExternalStorageState()+num+".jpg", Toast.LENGTH_LONG).show();
             }
         });
 
 
+
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        WebView webView = (WebView) findViewById(R.id.web_view);
+
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            webView.goBack();   //返回上一个页面
+            return true;
+        }
+        return super.onKeyDown(keyCode, event); //退出整个应用程序
+    }
+
 
     public static Bitmap activityShot(Activity activity) {
         // 获取 windows 中最顶层的 view
@@ -116,6 +145,20 @@ public class WebPage extends AppCompatActivity {
     }
 
 
+    /**
+     * 页面截取
+     */
+
+
+        public static Bitmap webshot (WebView webView) {
+            Picture picture = webView.capturePicture();
+            int width = picture.getWidth();
+            int height = picture.getHeight();
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            picture.draw(canvas);
+            return bitmap;
+        }
 
     /**
      * 存储到sdcard
@@ -126,7 +169,9 @@ public class WebPage extends AppCompatActivity {
         //判断sd卡是否存在
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //文件名
-            String fileName = "Android/data/WebScreenshot";
+
+                String fileName = "Android/data/WebScreenshot";
+
             File folder = new File(Environment.getExternalStorageDirectory().getPath()+File.separator+fileName);
             if (!folder.exists()) {
                 folder.mkdir();
@@ -150,7 +195,7 @@ public class WebPage extends AppCompatActivity {
             }
 
         } else {
-            Toast.makeText(WebPage.this, "oh, no", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WebPage.this, "Where are the SDcard?", Toast.LENGTH_SHORT).show();
         }
 
 

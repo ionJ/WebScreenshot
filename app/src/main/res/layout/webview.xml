@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_margin="18dp"
             app:fab_labelStyle="@style/lable_style"
             app:rippleColor="@android:color/background_dark">
 
@@ -38,6 +39,7 @@
                 android:id="@+id/capture_webview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera_white_18dp"
                 app:fab_size="mini"
                 app:fab_title="屏幕截图" />
 
@@ -45,8 +47,9 @@
                 android:id="@+id/capture_all_webview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera_white_18dp"
                 app:fab_size="mini"
-                app:fab_title="底部" />
+                app:fab_title="网页截图" />
 
         </com.ddz.floatingactionbutton.FloatingActionMenu>
 

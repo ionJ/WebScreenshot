@@ -3,12 +3,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_web"
-            android:title="@string/nav_to_web" />
+            android:title="@string/nav_to_web"
+            android:icon="@drawable/ic_language_black_18dp"
+            />
         <item
             android:id="@+id/nav_screen"
-            android:title="@string/nav_to_screen" />
+            android:icon="@drawable/ic_photo_camera_black_18dp"
+            android:title="@string/nav_to_screen"/>
         <item
             android:id="@+id/nav_picture"
-            android:title="@string/nav_to_picture" />
+            android:title="@string/nav_to_picture"
+            android:icon="@drawable/ic_collections_black_18dp"/>
     </group>
 </menu>

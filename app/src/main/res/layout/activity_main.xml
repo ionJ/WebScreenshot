@@ -33,7 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="90dp"
-            android:hint="@string/web_hint" />
+            android:ems="8"
+            android:hint="@string/web_hint"
+            android:inputType="textWebEditText" />
 
         <Button
             android:id="@+id/button"

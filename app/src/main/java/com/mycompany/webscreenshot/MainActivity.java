@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_list_black_36dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_view_headline_white_24dp);
         }
 
 
@@ -41,7 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                mDrawerLayout.closeDrawers();
+//                mDrawerLayout.closeDrawers();
+                switch (item.getItemId()) {
+                    case R.id.nav_picture:
+                        Toast.makeText(MainActivity.this, "say hello", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
                 return true;
             }
         });
