@@ -58,6 +58,10 @@ public class WebPage extends AppCompatActivity {
         webView.loadUrl("https://www.baidu.com/s?wd=" + data + "&ie=utf-8&src=eg_newtab");
         webView.setDrawingCacheEnabled(true);
 
+        // 此段代码用于适应 android 5.0 以上版本，保证网页截图正常运行
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            WebView.enableSlowWholeDocumentDraw();
+        }
 
         ActionBar actionBar = getSupportActionBar();
 
