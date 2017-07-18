@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_view_headline_white_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_36dp);
         }
 
 
@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (item.getItemId()) {
                     case R.id.nav_picture:
                         Toast.makeText(MainActivity.this, "say hello", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nav_out:
+                        finish();
                         return true;
                 }
                 return true;
@@ -78,5 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return true;
     }
+
+
 
 }

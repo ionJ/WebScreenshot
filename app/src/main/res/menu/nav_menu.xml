@@ -3,8 +3,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_web"
-            android:title="@string/nav_to_web"
             android:icon="@drawable/ic_language_black_18dp"
+            android:title="@string/nav_to_web"
             />
         <item
             android:id="@+id/nav_screen"
@@ -12,7 +12,11 @@
             android:title="@string/nav_to_screen"/>
         <item
             android:id="@+id/nav_picture"
-            android:title="@string/nav_to_picture"
-            android:icon="@drawable/ic_collections_black_18dp"/>
+            android:icon="@drawable/ic_collections_black_18dp"
+            android:title="@string/nav_to_picture"/>
+        <item
+            android:id="@+id/nav_out"
+            android:icon="@drawable/ic_power_settings_new_black_18dp"
+            android:title="@string/nav_to_out"/>
     </group>
 </menu>

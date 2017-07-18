@@ -77,7 +77,13 @@ public class WebPage extends AppCompatActivity {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                captureButton.setVisibility(View.INVISIBLE);
+                captureAllButton.setVisibility(View.INVISIBLE);
+                fab_menu.setVisibility(View.INVISIBLE);
                 Bitmap a = activityShot(WebPage.this);
+                captureButton.setVisibility(View.VISIBLE);
+                captureAllButton.setVisibility(View.VISIBLE);
+                fab_menu.setVisibility(View.VISIBLE);
                 String num = getRandomCode();
                 saveToSD(a, "/Screenimage" + num);
                 Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"/Android/data/WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_LONG).show();
@@ -90,7 +96,13 @@ public class WebPage extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     WebView.enableSlowWholeDocumentDraw();
                 }
+                captureButton.setVisibility(View.INVISIBLE);
+                captureAllButton.setVisibility(View.INVISIBLE);
+                fab_menu.setVisibility(View.INVISIBLE);
                 Bitmap b = webshot(webView);
+                captureButton.setVisibility(View.VISIBLE);
+                captureAllButton.setVisibility(View.VISIBLE);
+                fab_menu.setVisibility(View.VISIBLE);
                 String num = getRandomCode();
                 saveToSD(b, "/AllScreenimage" + num);
                 Toast.makeText(WebPage.this, Environment.getExternalStorageState()+num+".jpg", Toast.LENGTH_LONG).show();
