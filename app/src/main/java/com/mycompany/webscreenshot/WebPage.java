@@ -49,6 +49,9 @@ public class WebPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
+        //  将活动添加到活动管理器中
+        ActivityCollector.addActivity(this);
+
         Intent intent = getIntent();
         final String data = intent.getStringExtra("www");
         final WebView webView = (WebView) findViewById(R.id.web_view);
@@ -226,5 +229,10 @@ public class WebPage extends AppCompatActivity {
         return num;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+    }
 
 }

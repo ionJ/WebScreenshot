@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glide_menu);
+        // 将活动添加至活动管理器中
+        ActivityCollector.addActivity(this);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         EditText enter = (EditText)findViewById(R.id.enter_view);
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "say hello", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_out:
-                        finish();
+                        ActivityCollector.finishAll();
                         return true;
                 }
                 return true;
@@ -82,6 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+    }
 
 
 }

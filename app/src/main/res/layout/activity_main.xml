@@ -33,6 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="90dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:ems="8"
             android:hint="@string/web_hint"
             android:inputType="textWebEditText" />
@@ -42,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:text="@string/button" />
 
 
