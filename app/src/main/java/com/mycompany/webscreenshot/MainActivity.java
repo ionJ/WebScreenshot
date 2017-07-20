@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onNavigationItemSelected(MenuItem item) {
 //                mDrawerLayout.closeDrawers();
                 switch (item.getItemId()) {
+                    case R.id.nav_screen:
+                        Intent intent = new Intent(MainActivity.this, WebPage.class);
+                        startActivity(intent);
+                        break;
                     case R.id.nav_picture:
                         Toast.makeText(MainActivity.this, "say hello", Toast.LENGTH_SHORT).show();
                         break;

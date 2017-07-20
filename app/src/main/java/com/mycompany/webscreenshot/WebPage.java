@@ -11,11 +11,13 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -53,7 +55,11 @@ public class WebPage extends AppCompatActivity {
         ActivityCollector.addActivity(this);
 
         Intent intent = getIntent();
-        final String data = intent.getStringExtra("www");
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        String data = intent.getStringExtra("www");
+        if (data == null) {
+            data = "";
+        }
         final WebView webView = (WebView) findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         // 当网页跳转时，令目标网页仍然在当前 WebView 中显示
@@ -112,6 +118,26 @@ public class WebPage extends AppCompatActivity {
             }
         });
 
+        navView.setCheckedItem(R.id.nav_screen);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+//                mDrawerLayout.closeDrawers();
+                switch (item.getItemId()) {
+                    case R.id.nav_web:
+                        Intent intent = new Intent(WebPage.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_picture:
+                        Toast.makeText(WebPage.this, "say hello", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nav_out:
+                        ActivityCollector.finishAll();
+                        return true;
+                }
+                return true;
+            }
+        });
 
 
     }
