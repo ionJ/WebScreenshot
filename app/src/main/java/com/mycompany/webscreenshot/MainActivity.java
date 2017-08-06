@@ -12,11 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import me.iwf.photopicker.PhotoPicker;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
+
+    private ArrayList<String> selectedPhotos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(intent);
                         break;
                     case R.id.nav_picture:
-                        Toast.makeText(MainActivity.this, "say hello", Toast.LENGTH_SHORT).show();
+                        PhotoPicker.builder()
+                                .setPhotoCount(9)
+                                .start(MainActivity.this);
                         break;
                     case R.id.nav_out:
                         ActivityCollector.finishAll();
@@ -87,6 +94,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == PhotoPicker.REQUEST_CODE) {
+            if (data != null) {
+                ArrayList<String> photos =
+                        data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+            }
+        }
     }
 
     @Override

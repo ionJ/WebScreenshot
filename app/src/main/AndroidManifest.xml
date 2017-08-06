@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     
     <application
         android:allowBackup="true"
@@ -24,6 +24,12 @@
         </activity>
         <activity android:name=".WebPage">
         </activity>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
+                  android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
+
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
+                  android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 

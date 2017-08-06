@@ -24,7 +24,13 @@
 
         </WebView>
 
-
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/CustomProgressStylt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
 
         <com.ddz.floatingactionbutton.FloatingActionMenu
             android:id="@+id/fab_menu"
@@ -65,6 +71,8 @@
         </com.ddz.floatingactionbutton.FloatingActionMenu>
 
 
+
+
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
@@ -74,5 +82,7 @@
         android:layout_gravity="start"
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/nav_header"/>
+
+
 
 </android.support.v4.widget.DrawerLayout>

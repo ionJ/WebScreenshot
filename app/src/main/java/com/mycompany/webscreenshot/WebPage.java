@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ddz.floatingactionbutton.FloatingActionButton;
@@ -31,7 +32,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import me.iwf.photopicker.PhotoPicker;
 
 
 public class WebPage extends AppCompatActivity {
@@ -46,6 +49,10 @@ public class WebPage extends AppCompatActivity {
 
     private static final String TAG = "WebPage";
 
+    private ArrayList<String> selectedPhotos = new ArrayList<>();
+
+    ImageView imageView;
+
 
     @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,8 @@ public class WebPage extends AppCompatActivity {
         ActivityCollector.addActivity(this);
 
         Intent intent = getIntent();
+        imageView = (ImageView) findViewById(R.id.image_view);
+
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         String data = intent.getStringExtra("www");
         if (data == null) {
@@ -86,16 +95,12 @@ public class WebPage extends AppCompatActivity {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureButton.setVisibility(View.INVISIBLE);
-                captureAllButton.setVisibility(View.INVISIBLE);
-                fab_menu.setVisibility(View.INVISIBLE);
+                hideButton();
                 Bitmap a = activityShot(WebPage.this);
-                captureButton.setVisibility(View.VISIBLE);
-                captureAllButton.setVisibility(View.VISIBLE);
-                fab_menu.setVisibility(View.VISIBLE);
+                showButton();
                 String num = getRandomCode();
                 saveToSD(a, "/Screenimage" + num);
-                Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"/Android/data/WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_LONG).show();
+                Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"/Android/data/WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,16 +110,12 @@ public class WebPage extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     WebView.enableSlowWholeDocumentDraw();
                 }
-                captureButton.setVisibility(View.INVISIBLE);
-                captureAllButton.setVisibility(View.INVISIBLE);
-                fab_menu.setVisibility(View.INVISIBLE);
+                hideButton();
                 Bitmap b = webshot(webView);
-                captureButton.setVisibility(View.VISIBLE);
-                captureAllButton.setVisibility(View.VISIBLE);
-                fab_menu.setVisibility(View.VISIBLE);
+                showButton();
                 String num = getRandomCode();
                 saveToSD(b, "/AllScreenimage" + num);
-                Toast.makeText(WebPage.this, Environment.getExternalStorageState()+num+".jpg", Toast.LENGTH_LONG).show();
+                Toast.makeText(WebPage.this, Environment.getExternalStorageState()+num+".jpg", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,7 +130,9 @@ public class WebPage extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_picture:
-                        Toast.makeText(WebPage.this, "say hello", Toast.LENGTH_SHORT).show();
+                        PhotoPicker.builder()
+                                .setPhotoCount(9)
+                                .start(WebPage.this);
                         break;
                     case R.id.nav_out:
                         ActivityCollector.finishAll();
@@ -215,7 +218,8 @@ public class WebPage extends AppCompatActivity {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //文件名
 
-                String fileName = "Android/data/WebScreenshot";
+                //String fileName = "Android/data/WebScreenshot";
+            String fileName = "WebADScreenshot";
 
             File folder = new File(Environment.getExternalStorageDirectory().getPath()+File.separator+fileName);
             if (!folder.exists()) {
@@ -246,6 +250,20 @@ public class WebPage extends AppCompatActivity {
 
     }
 
+    private void hideButton() {
+        captureButton.setVisibility(View.INVISIBLE);
+        captureAllButton.setVisibility(View.INVISIBLE);
+        fab_menu.setVisibility(View.INVISIBLE);
+    }
+
+    private void showButton() {
+        captureButton.setVisibility(View.VISIBLE);
+        captureAllButton.setVisibility(View.VISIBLE);
+        fab_menu.setVisibility(View.VISIBLE);
+    }
+
+
+
     private String getRandomCode() {
         String num = "";
         for (int i = 0; i < 10; i++) {
@@ -253,6 +271,18 @@ public class WebPage extends AppCompatActivity {
             num += f;
         }
         return num;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == PhotoPicker.REQUEST_CODE) {
+            if (data != null) {
+                ArrayList<String> photos =
+                        data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+            }
+        }
     }
 
     @Override
