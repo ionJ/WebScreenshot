@@ -13,7 +13,7 @@
         >
 
         <TextView
-            android:id="@+id/webid"
+            android:id="@+id/web_id"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
 
@@ -40,6 +40,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/screenshot_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
