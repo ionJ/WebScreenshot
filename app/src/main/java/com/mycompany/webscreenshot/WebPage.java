@@ -62,13 +62,19 @@ public class WebPage extends AppCompatActivity {
         ActivityCollector.addActivity(this);
 
         Intent intent = getIntent();
+
+        // 为什么我要写这个？不知用途的 picture.xml 中唯一的布局 ImageView ，覆盖了整个界面，为了截图吗？
         imageView = (ImageView) findViewById(R.id.image_view);
 
+        //  侧滑菜单的声明
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+
+        // 检查网址输入栏是否没有输入，没有则替换成无特定搜索内容
         String data = intent.getStringExtra("www");
         if (data == null) {
             data = "";
         }
+        // 声明网页显示的布局，并使其可以通过javaScript进行控制，用于截图功能
         final WebView webView = (WebView) findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         // 当网页跳转时，令目标网页仍然在当前 WebView 中显示
@@ -119,6 +125,8 @@ public class WebPage extends AppCompatActivity {
             }
         });
 
+        // 此段为侧滑菜单的逻辑代码
+        // 下面这行表示将该选项设为默认选中选项
         navView.setCheckedItem(R.id.nav_screen);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -157,6 +165,9 @@ public class WebPage extends AppCompatActivity {
     }
 
 
+    /*
+    *  界面截取
+    * */
     public static Bitmap activityShot(Activity activity) {
         // 获取 windows 中最顶层的 view
         View view = activity.getWindow().getDecorView();
@@ -196,7 +207,6 @@ public class WebPage extends AppCompatActivity {
     /**
      * 页面截取
      */
-
 
         public static Bitmap webshot (WebView webView) {
             Picture picture = webView.capturePicture();
@@ -250,12 +260,15 @@ public class WebPage extends AppCompatActivity {
 
     }
 
+
+    // 隐藏悬浮按钮，防止截图时一起被截进去
     private void hideButton() {
         captureButton.setVisibility(View.INVISIBLE);
         captureAllButton.setVisibility(View.INVISIBLE);
         fab_menu.setVisibility(View.INVISIBLE);
     }
 
+    // 重新显示悬浮按钮
     private void showButton() {
         captureButton.setVisibility(View.VISIBLE);
         captureAllButton.setVisibility(View.VISIBLE);

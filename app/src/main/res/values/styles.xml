@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#009688</item>
         <item name="colorPrimaryDark">#004d40</item>
-        <item name="colorAccent">#ff80ab</item>
+        <item name="colorAccent">#009688</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -27,6 +27,11 @@
         <item name="android:maxWidth">30dip</item>
         <item name="android:minHeight">30dip</item>
         <item name="android:maxHeight">30dip</item>
+    </style>
+
+    <!-- toolbar菜单样式 -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">#ff000000</item>
     </style>
 
 </resources>

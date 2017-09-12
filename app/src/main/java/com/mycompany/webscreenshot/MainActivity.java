@@ -10,8 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+
+import com.ddz.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         EditText enter = (EditText)findViewById(R.id.enter_view);
-        Button button1 = (Button)findViewById(R.id.button);
+        FloatingActionButton button1 = (FloatingActionButton)findViewById(R.id.button);
         button1.setOnClickListener(this);
 
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);

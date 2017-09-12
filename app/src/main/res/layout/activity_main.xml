@@ -8,7 +8,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="300dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -30,17 +30,22 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
+                app:layout_collapseMode="pin"
+                app:theme="@style/ToolbarTheme">
             </android.support.v7.widget.Toolbar>
 
             <EditText
                 android:id="@+id/enter_view"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="125dp"
+                android:layout_marginTop="190dp"
+                android:textColor="#5F9EA0"
+                android:backgroundTint="#CAE1FF"
+                android:textCursorDrawable="@drawable/cursor"
                 android:hint="请输入搜索内容"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:textColorHint="#B0C4DE"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="10dp"
                 app:layout_collapseMode="pin"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -64,7 +69,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.ddz.floatingactionbutton.FloatingActionButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
