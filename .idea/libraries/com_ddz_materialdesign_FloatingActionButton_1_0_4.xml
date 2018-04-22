@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.ddz.materialdesign:FloatingActionButton-1.0.4">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/FloatingActionButton-1.0.4.aar/5257da1ea0ef47ae7352f9da47042b86/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/FloatingActionButton-1.0.4.aar/5257da1ea0ef47ae7352f9da47042b86/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ddz.materialdesign/FloatingActionButton/1.0.4/ccca09804e2b9a325751775e6e9851f77f402e2c/FloatingActionButton-1.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

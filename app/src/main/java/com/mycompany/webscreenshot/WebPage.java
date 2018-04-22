@@ -57,6 +57,7 @@ public class WebPage extends AppCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WebView.enableSlowWholeDocumentDraw();
         setContentView(R.layout.webview);
         //  将活动添加到活动管理器中
         ActivityCollector.addActivity(this);
@@ -106,7 +107,7 @@ public class WebPage extends AppCompatActivity {
                 showButton();
                 String num = getRandomCode();
                 saveToSD(a, "/Screenimage" + num);
-                Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"/Android/data/WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WebPage.this, Environment.getExternalStorageDirectory()+"WebScreenshot/Screenimage"+num+".jpg", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -199,7 +200,7 @@ public class WebPage extends AppCompatActivity {
         view.destroyDrawingCache();
         view.setDrawingCacheEnabled(false);
 
-        Toast.makeText(activity, "this bitmap ok", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(activity, "this bitmap ok", Toast.LENGTH_SHORT).show();
 
         return bitmap;
     }
@@ -227,23 +228,23 @@ public class WebPage extends AppCompatActivity {
 
         //判断sd卡是否存在
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            //文件名
+            //保存的文件夹名
 
-                //String fileName = "Android/data/WebScreenshot";
-            String fileName = "WebADScreenshot";
+                String fileName = "/WebScreens";
+
 
             File folder = new File(Environment.getExternalStorageDirectory().getPath()+File.separator+fileName);
             if (!folder.exists()) {
                 folder.mkdir();
             }
-            File file = new File(folder + bitName + ".jpg");
+            File file = new File(folder + bitName + ".png");
             FileOutputStream out;
             if (!file.exists()) {
 
                 try {
                     out = new FileOutputStream(file);
                     if (bitmap.compress(Bitmap.CompressFormat.PNG, 70, out)) {
-                        Toast.makeText(WebPage.this, "成功存入相册", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WebPage.this, folder + bitName+".png", Toast.LENGTH_SHORT).show();
                         out.flush();
                         out.close();
                     }
